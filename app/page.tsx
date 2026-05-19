@@ -1,4 +1,6 @@
-ort default function HomePage() {
+import Link from 'next/link';
+
+export default function HomePage() {
   return (
     <main style={{ padding: '80px 20px', textAlign: 'center', fontFamily: 'sans-serif' }}>
       <h1 style={{ fontSize: '2.5rem', color: '#0f172a', fontWeight: 700 }}>
