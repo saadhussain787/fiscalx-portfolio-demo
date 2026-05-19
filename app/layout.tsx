@@ -8,9 +8,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header style={{ borderBottom: '1px solid #e2e8f0', backgroundColor: '#ffffff', position: 'sticky', top: 0, zIndex: 100 }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '40px' }}>
-              <strong style={{ fontSize: '1.5rem', color: '#0f172a', letterSpacing: '-0.5px' }}>
-                Fiscal<span style={{ color: '#2563eb' }}>X</span>
-              </strong>
+              
+              {/* Wrapped the logo in a Link to make it return to Home */}
+              <Link href="/" style={{ textDecoration: 'none' }}>
+                <strong style={{ fontSize: '1.5rem', color: '#0f172a', letterSpacing: '-0.5px' }}>
+                  Fiscal<span style={{ color: '#2563eb' }}>X</span>
+                </strong>
+              </Link>
+              
               <nav style={{ display: 'flex', gap: '24px', fontWeight: 500 }}>
                 <Link href="/" style={{ color: '#1e293b', textDecoration: 'none' }}>Home</Link>
                 <Link href="/contact" style={{ color: '#1e293b', textDecoration: 'none' }}>Contact</Link>
