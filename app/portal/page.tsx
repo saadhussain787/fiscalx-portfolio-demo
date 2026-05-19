@@ -4,16 +4,12 @@ import { Amplify } from 'aws-amplify';
 import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import Link from 'next/link';
-
-// Database imports
 import { generateClient } from 'aws-amplify/data';
 import { type Schema } from '@/amplify/data/resource';
 import { useState, useEffect } from 'react';
-
-// Connects our frontend directly to the backend settings produced during build
 import outputs from '@/amplify_outputs.json';
-Amplify.configure(outputs);
 
+Amplify.configure(outputs);
 const client = generateClient<Schema>();
 
 interface ClientProfileState {
@@ -27,7 +23,6 @@ function DashboardContent() {
   const [profile, setProfile] = useState<ClientProfileState | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch data from DynamoDB automatically upon logging in
   useEffect(() => {
     async function fetchClientProfile() {
       try {
@@ -58,7 +53,6 @@ function DashboardContent() {
         </button>
       </div>
 
-      {/* Notice Board Area */}
       {profile?.portalNotice && (
         <div style={{ padding: '16px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '8px', marginBottom: '24px', color: '#1e40af', fontSize: '0.95rem' }}>
           <strong>Message from Auditor:</strong> {profile.portalNotice}
@@ -71,7 +65,6 @@ function DashboardContent() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-        {/* Dynamic Tax Status Card */}
         <div style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
           <h4 style={{ margin: '0 0 6px 0', color: '#0f172a', fontWeight: 700 }}>Tax Filing Activity</h4>
           <p style={{ color: '#2563eb', fontSize: '1.1rem', fontWeight: 600, margin: '4px 0' }}>
@@ -80,7 +73,6 @@ function DashboardContent() {
           <p style={{ color: '#64748b', fontSize: '0.85rem', margin: 0 }}>Updated in real-time by your designated accountant.</p>
         </div>
 
-        {/* Document Safe Storage Card */}
         <div style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
           <h4 style={{ margin: '0 0 6px 0', color: '#0f172a', fontWeight: 700 }}>Document Safe Storage</h4>
           <p style={{ color: '#64748b', fontSize: '0.9rem', margin: 0 }}>Your shared encrypted workspace folder is ready. Upload forms safely inside this console environment.</p>
