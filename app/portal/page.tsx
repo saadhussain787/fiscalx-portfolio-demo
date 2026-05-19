@@ -1,34 +1,61 @@
 "use client";
 
+import { Amplify } from 'aws-amplify';
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 import Link from 'next/link';
 
-export default function PortalPage() {
+// Connects our frontend directly to the backend settings produced during build
+import outputs from '@/amplify_outputs.json';
+Amplify.configure(outputs);
+
+function DashboardContent() {
+  const { user, signOut } = useAuthenticator();
+
   return (
-    <main style={{ maxWidth: '600px', margin: '60px auto', padding: '40px', border: '1px solid #e2e8f0', borderRadius: '8px', fontFamily: 'sans-serif', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
-      <h2 style={{ fontSize: '1.75rem', color: '#0f172a', marginBottom: '8px', fontWeight: 700 }}>Client Login Portal</h2>
-      <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '0.95rem' }}>Secure access for FiscalX corporate and personal tax clients.</p>
-      
-      <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <main style={{ maxWidth: '800px', margin: '40px auto', padding: '40px', border: '1px solid #e2e8f0', borderRadius: '12px', fontFamily: 'sans-serif', backgroundColor: '#ffffff', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', borderBottom: '2px solid #f1f5f9', paddingBottom: '16px' }}>
         <div>
-          <label style={{ display: 'block', marginBottom: '6px', fontWeight: 500, fontSize: '0.9rem', color: '#1e293b' }}>Email Address</label>
-          <input type="email" placeholder="name@company.com" style={{ width: '100%', padding: '12px', border: '1px solid #e2e8f0', borderRadius: '6px', fontSize: '1rem' }} disabled />
+          <span style={{ color: '#2563eb', fontWeight: 700, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Secure Session Active</span>
+          <h1 style={{ fontSize: '1.75rem', color: '#0f172a', margin: '4px 0 0 0', fontWeight: 800 }}>Client Workstation</h1>
         </div>
-        
-        <div>
-          <label style={{ display: 'block', marginBottom: '6px', fontWeight: 500, fontSize: '0.9rem', color: '#1e293b' }}>Password</label>
-          <input type="password" placeholder="••••••••" style={{ width: '100%', padding: '12px', border: '1px solid #e2e8f0', borderRadius: '6px', fontSize: '1rem' }} disabled />
-        </div>
-
-        <button type="button" style={{ width: '100%', padding: '12px', backgroundColor: '#0f172a', color: '#ffffff', border: 'none', borderRadius: '6px', fontWeight: 600, fontSize: '1rem', marginTop: '8px', cursor: 'not-allowed', opacity: 0.7 }}>
-          Sign In
+        <button onClick={signOut} style={{ padding: '8px 16px', backgroundColor: '#ef4444', color: '#ffffff', border: 'none', borderRadius: '6px', fontWeight: 600, cursor: 'pointer', fontSize: '0.9rem' }}>
+          Secure Log Out
         </button>
-      </form>
+      </div>
 
-      <div style={{ marginTop: '24px', paddingTop: '16px', borderTop: '1px solid #e2e8f0', textAlign: 'center' }}>
+      <div style={{ padding: '24px', backgroundColor: '#f8fafc', borderRadius: '8px', marginBottom: '24px', border: '1px solid #e2e8f0' }}>
+        <h3 style={{ margin: '0 0 8px 0', color: '#0f172a', fontSize: '1.1rem', fontWeight: 700 }}>Welcome Back</h3>
+        <p style={{ margin: 0, color: '#475569', fontSize: '0.95rem' }}>Authenticated Account: <strong>{user?.signInDetails?.loginId}</strong></p>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        <div style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
+          <h4 style={{ margin: '0 0 6px 0', color: '#0f172a', fontWeight: 700 }}>Tax Filing Activity</h4>
+          <p style={{ color: '#64748b', fontSize: '0.9rem', margin: 0 }}>No active processing requests found. Contact your auditor to link your corporate ledger accounts.</p>
+        </div>
+        <div style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
+          <h4 style={{ margin: '0 0 6px 0', color: '#0f172a', fontWeight: 700 }}>Document Safe Storage</h4>
+          <p style={{ color: '#64748b', fontSize: '0.9rem', margin: 0 }}>Your shared encrypted workspace folder is ready. Upload forms safely inside this console environment.</p>
+        </div>
+      </div>
+
+      <div style={{ marginTop: '30px', textAlign: 'center' }}>
         <Link href="/" style={{ color: '#2563eb', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500 }}>
-          ← Back to Homepage
+          ← Back to Main Public Site
         </Link>
       </div>
     </main>
+  );
+}
+
+export default function PortalPage() {
+  return (
+    <div style={{ padding: '60px 20px', display: 'flex', justifyContent: 'center', background: '#f8fafc', minHeight: 'calc(100vh - 80px)' }}>
+      {/* The AWS Authenticator wrapper intercepts non-logged-in users automatically */}
+      <Authenticator>
+        <DashboardContent />
+      </Authenticator>
+    </div>
   );
 }
