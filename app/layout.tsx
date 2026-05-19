@@ -7,6 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <nav style={{ padding: '20px', borderBottom: '1px solid #eee', display: 'flex', gap: '20px', alignItems: 'center' }}>
           <strong style={{ fontSize: '1.5rem' }}>FiscalX</strong>
           <Link href="/">Home</Link>
+          <Link href="/contact">Contact</Link> {/* <--- Add this line */}
           <Link href="/portal" style={{ marginLeft: 'auto', padding: '8px 16px', backgroundColor: '#0070f3', color: 'white', borderRadius: '5px', textDecoration: 'none' }}>
             Client Portal
           </Link>
