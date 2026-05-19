@@ -51,7 +51,7 @@ export default function ContactPage() {
           </form>
         </div>
 
-        {/* Right Side: Specific Office Details & Live Map */}
+        {/* Right Side: Specific Office Details & Indestructible Map */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           
           <div style={{ padding: '30px', border: '1px solid #e2e8f0', borderRadius: '8px', backgroundColor: '#f8fafc' }}>
@@ -81,10 +81,10 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Map Centered Directly on 255 Duncan Mill Rd */}
+          {/* Fixed, Free-Format Google Map Embed */}
           <div style={{ width: '100%', height: '375px', borderRadius: '8px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d2882.264259463583!2d-79.35432292340578!3d43.76133194537385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d390c9bffffd%3A0x8303cf56c9e8f219!2s255%20Duncan%20Mill%20Rd%20Suite%20206%2C%20North%20York%2C%20ON%20M3B%203H9!5e0!3m2!1sen!2sca!4v1716145000000!5m2!1sen!2sca"
+              src="https://maps.google.com/maps?q=255%20Duncan%20Mill%20Rd%20Suite%20206,%20North%20York,%20ON%20M3B%203H9&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
