@@ -16,7 +16,6 @@ Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
 
-// Creating a fallback local interface to prevent strict build crashes
 interface ClientProfileState {
   companyName?: string | null;
   taxYearStatus?: string | null;
@@ -84,7 +83,7 @@ function DashboardContent() {
         {/* Document Safe Storage Card */}
         <div style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
           <h4 style={{ margin: '0 0 6px 0', color: '#0f172a', fontWeight: 700 }}>Document Safe Storage</h4>
-          <p style={{ color: '#64748b', fontSize: '0.9rem', margin: 0 }}>Your shared encrypted workspace folder is ready.</p>
+          <p style={{ color: '#64748b', fontSize: '0.9rem', margin: 0 }}>Your shared encrypted workspace folder is ready. Upload forms safely inside this console environment.</p>
           <a href="#" style={{ color: '#2563eb', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', display: 'inline-block', marginTop: '8px' }}>View Secure Files →</a>
         </div>
       </div>
